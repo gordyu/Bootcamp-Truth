@@ -1,11 +1,3 @@
 node_modules
-
 config.js
-# Elastic Beanstalk Files
-.elasticbeanstalk/*
-!.elasticbeanstalk/*.cfg.yml
-!.elasticbeanstalk/*.global.yml
-node_modules/
-.gitignore
-.elasticbeanstalk/
-config.js
+client/dist/bundle.js

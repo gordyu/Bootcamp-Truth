@@ -4,10 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 const magnifyingGlass = <FontAwesomeIcon icon={faSearch} />;
 import {
-  InputGroup, InputGroupAddon, InputGroupButtonDropdown, Input, Button, Spinner, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Container, Row, Col } from "reactstrap";
+  Button, ButtonDropdown, Spinner, Nav, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Container, Row, Col, Progress } from "reactstrap";
 import Trust from "./trust.jsx";
-import RateStars from "./rateStars.jsx";
-import Pages from "./pages.jsx";
 import Feed from "./reviewsFeed.jsx";
 
 class App extends React.Component {
@@ -39,7 +37,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:9000/lowestrated")
+    fetch("http://localhost:4000/2018-hr-seattle")
       .then(res => res.json())
       .then(
         result => {
@@ -65,156 +63,74 @@ class App extends React.Component {
           <Spinner
             style={{ width: "45rem", height: "45rem" }}
             type="grow"
-            color="danger"
+            color="success"
           />
         </div>
       );
     else {
       return (
         <div className="feed">
-          <div className="feed_header">
-            <h2>
-              Recommended Reviews <b>for Hack Reactor</b>
-            </h2>
+          <div className="scams">
+            <h1>
+              Are Coding Bootcamp Outcomes Real?
+            </h1>
+            <br />
             <Trust />
           </div>
-          <span className="search">
-            <InputGroup>
-              <Input placeholder="Search within the reviews" />
-              <InputGroupAddon addonType="append">
-                <Button color="danger">{magnifyingGlass}</Button>
-              </InputGroupAddon>
-              &nbsp;&nbsp;
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center"
-                }}
-              >
-                Sort by
-              </div>
-              <InputGroupButtonDropdown
-                addonType="append"
-                isOpen={this.state.dropdownOpen}
-                toggle={this.toggleDropDown}
-              >
-                &nbsp;
-                <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-                  <DropdownToggle color="danger" caret>
-                    {this.state.value}
+          <br />
+          <div className="evaluation">
+            <h2>
+              Evaluate Outcomes of Other Bootcamps Using LinkedIn
+            </h2>
+            <div className="dropdowns">
+              <span>
+                <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+                  <DropdownToggle caret color="primary">
+                    2018
                   </DropdownToggle>
                   <DropdownMenu>
-                    <DropdownItem><div onClick={()=>{
-                      fetch("http://localhost:9000/highestratedladies")
-                      .then(res => res.json())
-                      .then(
-                        result => {
-                          this.setState({
-                            isLoaded: true,
-                            items: result,
-                            value: 'Highest Rated Ladies'
-                          });
-                        },
-                        error => {
-                          this.setState({
-                            isLoaded: true,
-                            error
-                          });
-                        })}
-                    }>Highest Rated Ladies</div>
-                    </DropdownItem>
-                    <DropdownItem><div onClick={()=>{
-                      fetch("http://localhost:9000/highestratedgents")
-                      .then(res => res.json())
-                      .then(
-                        result => {
-                          this.setState({
-                            isLoaded: true,
-                            items: result,
-                            value: 'Highest Rated Gents'
-                          });
-                        },
-                        error => {
-                          this.setState({
-                            isLoaded: true,
-                            error
-                          });
-                        })}
-                    }>Lowest Rated Ladies</div>
-                    </DropdownItem>
-                    <DropdownItem><div onClick={()=>{
-                      fetch("http://localhost:9000/lowestrated")
-                      .then(res => res.json())
-                      .then(
-                        result => {
-                          this.setState({
-                            isLoaded: true,
-                            items: result,
-                            value: 'Lowest Rated'
-                          });
-                        },
-                        error => {
-                          this.setState({
-                            isLoaded: true,
-                            error
-                          });
-                        })}                      
-                    }>Lowest Rated</div>
-                    </DropdownItem>
+                    <DropdownItem header>Graduation Year</DropdownItem>
+                    <DropdownItem>2019</DropdownItem>
+                    <DropdownItem>2017</DropdownItem>
                   </DropdownMenu>
-                </Dropdown>
-              </InputGroupButtonDropdown>
-            </InputGroup>
-          </span>
-          <hr />
-          <div>
-            <Container>
-              <Row>
-                <Col>
-                  <img src="https://s3-media4.fl.yelpcdn.com/assets/2/www/img/1f2e356daa5c/writeareview/empty_profile.png" />
-                </Col>
-                <Col>
-                  <div
-                    className="new_review"
-                    style={{
-                      backgroundColor: "#e6e6e6",
-                      borderStyle: "solid",
-                      borderWidth: "1px",
-                      borderRadius: "5px",
-                      borderColor: "gray",
-                      paddingTop: "7px"
-                    }}
-                  >
-                    <RateStars />
-                    <hr />
-                    <div className="horizontally_centered">
-                      <a
-                        href="#"
-                        style={{
-                          display: "flex",
-                          justifyContent: "center",
-                          alignItems: "center"
-                        }}
-                      >
-                        Start your review of&nbsp;<b>Hack Reactor.</b>
-                      </a>
-                    </div>
-                  </div>
-                </Col>
-              </Row>
-            </Container>
+                </ButtonDropdown>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+                  <DropdownToggle caret color="secondary">
+                    Hack Reactor
+                  </DropdownToggle>
+                  <DropdownMenu>
+                    <DropdownItem header>Bootcamp</DropdownItem>
+                    <DropdownItem>Flatiron School</DropdownItem>
+                    <DropdownItem>General Assembly</DropdownItem>
+                  </DropdownMenu>
+                </ButtonDropdown>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+                  <DropdownToggle caret color="success">
+                    Seattle
+                  </DropdownToggle>
+                  <DropdownMenu>
+                    <DropdownItem header>Location</DropdownItem>
+                    <DropdownItem>San Francisco</DropdownItem>
+                    <DropdownItem>New York</DropdownItem>
+                  </DropdownMenu>
+                </ButtonDropdown>
+              </span>
+            </div>
+            <br />
+            <div className="summary">
+              <h2>Employment Overview for Your Selection</h2>
+              <div className="progress_bar">
+                <Progress multi>
+                  <Progress bar color="success" value="80">HIRED</Progress>
+                  <Progress bar color="warning" value="10">WTF</Progress>
+                  <Progress bar color="danger" value="10">REJECTED</Progress>
+                </Progress>
+              </div>
+            </div>
           </div>
-          <hr />
           <Feed reviews={this.state.items} />
-          <hr />
-          <div className="pagnation">
-            Page 1 of 10
-            <span className="pages">
-              <Pages />
-            </span>
-          </div>
-          <hr />
         </div>
       );
     }

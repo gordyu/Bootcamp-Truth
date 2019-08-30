@@ -1,5 +1,4 @@
-# ReviewsComponent
+# The Truth About Coding Bootcamp
 
-Try reading the package.json.# ReviewsComponent
-# ReviewsServiceOrganization
-# ReviewsServiceOrganization
+Try reading the package.json.
+# Bootcamp-Truth

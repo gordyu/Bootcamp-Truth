@@ -1,25 +1,20 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://gyunit:GreatGPA10mg@cluster0-pdp9t.gcp.mongodb.net/test?retryWrites=true&w=majority', { useNewUrlParser: true });
+mongoose.connect('mongodb://localhost/test', { useNewUrlParser: true });
 const db = mongoose.connection;
 
 mongoose.Promise = global.Promise;
 
 const yellReviewSchema = new mongoose.Schema({
   id: Number,
-  photoID: String,
-  gender: String,
-  username: String,
-  cityState: String,
-  numFriends: Number,
-  numReviews: Number,
-  numPhotos: Number,
+  employed: String,
+  title: String,
+  employer: String,
+  name: String,
+  year: Number,
+  bootcamp: String,
+  area: String,
   date: String,
-  numUseful: Number,
-  numFunny: Number,
-  numCool: Number,
-  numVotes: Number,
-  reviewScore: Number,
-  reviewText: String
+  linkedin: String
 }); 
 
 const yellReviews = mongoose.model('yellreviews', yellReviewSchema);
